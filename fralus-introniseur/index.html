@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="scaffolded-by" content="https://github.com/dart-lang/stagehand">
+    <title>Fralus-Introniseur</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
+    <script defer src="main.dart.js"></script>
+</head>
+<body id="body">
+<div id="global" spellcheck="false">
+    <h1 id="titre">FRALUS-INTRONISEUR</h1>
+    <form id="formulaire" autocomplete="off">
+        <div style="overflow-x:auto;">
+        <table>
+            <tr >
+                <td ><p class="styleLabel" >IMAGE</p></td>
+                <td>
+                    <div class="form-droite">
+                        <button id="boutonChoisirImage" class="boutonDialogue" type="button" >OUVRIR...</button>
+                        <div class="form-droite-input">
+                            <input id="nomImage" type="text" class="elemForm" placeholder="Aucun fichier .bmp" required>
+                            <p class="messageInvalide">Sélectionnez un fichier bitmap :  240Lx160H, 256 couleurs indexées</p>
+                        </div>
+                    </div>
+                    <table id="tableValidation" >
+                        <tr>
+                            <td colspan="3" align="center"><label >VALIDATION</label></td>
+                        </tr>
+                        <tr>
+                            <td><label></label></td>
+                            <td><label>REFERENCE</label></td>
+                            <td><label>RESULTATS</label></td>
+                        </tr>
+                        <tr><td>Signature</td><td></td><td></td></tr>
+                        <tr><td>Taille fichier</td><td></td><td></td></tr>
+                        <tr><td>Largeur</td><td></td><td></td></tr>
+                        <tr><td>Hauteur</td><td></td><td></td></tr>
+                        <tr><td>Bits par pixels</td><td></td><td></td></tr>
+                        <tr><td>VALIDE</td><td></td><td></td></tr>
+                    </table>
+                </td>
+                <td align="center">
+                    <div id="boiteImage"  >
+                        <img id="imageGba">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><p class="styleLabel">ROM GBA<p></td>
+                <td>
+                    <div class="form-droite">
+                        <button id="boutonChoisirRom" class="boutonDialogue" type="button" >OUVRIR...</button>
+                        <div class="form-droite-input">
+                            <input id="nomGBA" type="text"  class="elemForm" placeholder="Aucun fichier .gba" required >
+                            <p class="messageInvalide">Sélectionnez un fichier GBA</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><p class="styleLabel">ADRESSE<br>INSERTION</p></td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>Décimal</td>
+                            <td></td>
+                            <td>Hexadécimal</td>
+                        </tr>
+                        <tr >
+                            <td valign="middle">
+                                <div class="form-droite">
+                                    <div class=" form-droite-input">
+                                        <input id="inputAdresseDec" type="number" class="elemForm" placeholder="Aucune adresse" required min="0" max="67108863" >
+                                        <p class="messageInvalide" id="alerteAdresseInvalide">Entrez une adresse d'insertion, multiple de 4, et <= ???</p>
+                                    </div>
+                                </div>
+                            </td>
+                        <td  class="equiv"><=></td>
+                        <td><input id="inputAdresseHex" type="text" class="elemForm" placeholder="Aucune adresse" required pattern="[a-fA-F\d]+" ></td>
+
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center">
+                    <Button id="boutonInsererIntro"  class="boutonDialogue" disabled="true">INSERER INTRO</Button>
+                </td>
+            </tr>
+        </table>
+        </div>
+    </form>
+</div>
+</body>
+</html>
