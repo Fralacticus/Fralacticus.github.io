@@ -1,1 +1,1 @@
-An absolute bare-bones web app.
+## https://fralacticus.github.io/fralus-introniseur/
