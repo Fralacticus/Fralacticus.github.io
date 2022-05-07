@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+
+<html
+
+>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style> .wf-force-outline-none[tabindex="-1"]:focus{outline:none;} </style>
+    <title>Fralacticus - Soustracteur binaire</title>
+    <link href="./styles.css" rel="stylesheet" type="text/css"/>
+    <link href="./polices.css" rel="stylesheet" media="all"/>
+    <script defer src="main.dart.js"></script>
+
+</head>
+<body class="body">
+<div id="Colonnes" class="colonnes w-row">
+    <div id="Colonne-Gauche" class="colonne-gauche w-col w-col-7">
+        <section id="Formulaire" class="formulaire wf-section">
+            <div id="Container" class="container w-container">
+                <h2 id="Titre-Colonne-Gauche" class="titre-colonne">
+                    Soustraction binaire
+                </h2>
+                <div
+                        id="Formulaire-Soustraction-Block"
+                        class="formulaire-block w-form"
+                >
+                    <form
+                            id="Formulaire-Soustraction"
+                            name="wf-form-Formulaire-Soustraction"
+                            data-name="Formulaire-Soustraction"
+                            class="formulaire-soustraction"
+                    >
+                        <div id="Grille-Formulaire" class="grille-formulaire">
+                            <div
+                                    id="Div-Block-Ligne-A"
+                                    class="
+                      div-block-ligne
+                      w-node-_9c22fb80-abf1-8131-df5b-bd7721db5900-e984a88d
+                    "
+                            >
+                                <label id="Label-Ligne-A" class="label-ligne"
+                                >Nombre A</label
+                                >
+                            </div>
+                            <div
+                                    id="Div-Block-Saisie-Dec-A"
+                                    class="
+                      div-block-saisie
+                      w-node-_0a9895ee-4877-24fc-b5af-79d4dbafa557-e984a88d
+                    "
+                            >
+                                <label
+                                        for="A-Decimal"
+                                        id="Label-Champ-Dec-A"
+                                        class="label-champ"
+                                >Décimal</label
+                                ><input
+                                    type="text"
+                                    class="champ w-input"
+                                    maxlength="256"
+                                    name="A-Decimal"
+                                    data-name="A-Decimal"
+                                    placeholder=""
+                                    id="A-Decimal"
+                            />
+                            </div>
+                            <div
+                                    id="Div-Block-Saisie-Bin-A"
+                                    class="
+                      div-block-saisie
+                      w-node-_0a9895ee-4877-24fc-b5af-79d4dbafa55b-e984a88d
+                    "
+                            >
+                                <label
+                                        for="A-Binaire"
+                                        id="Label-Champ-A"
+                                        class="label-champ"
+                                >Binaire</label
+                                ><input
+                                    type="text"
+                                    class="champ w-input"
+                                    maxlength="256"
+                                    name="A-Binaire"
+                                    data-name="A-Binaire"
+                                    placeholder=""
+                                    id="A-Binaire"
+                            />
+                            </div>
+                            <div
+                                    id="Div-Block-Ligne-B"
+                                    class="
+                      div-block-ligne
+                      w-node-_1bc59fc2-6d20-b085-3c5a-2abad9a17783-e984a88d
+                    "
+                            >
+                                <label id="Label-Ligne-B" class="label-ligne"
+                                >Nombre B</label
+                                >
+                            </div>
+                            <div
+                                    id="Div-Block-Saisie-Dec-B"
+                                    class="
+                      div-block-saisie
+                      w-node-_0a9895ee-4877-24fc-b5af-79d4dbafa55f-e984a88d
+                    "
+                            >
+                                <label
+                                        for="B-Decimal"
+                                        id="Label-Champ-Dec-B"
+                                        class="label-champ"
+                                >Décimal</label
+                                ><input
+                                    type="text"
+                                    class="champ w-input"
+                                    maxlength="256"
+                                    name="B-Decimal"
+                                    data-name="B-Decimal"
+                                    placeholder=""
+                                    id="B-Decimal"
+                            />
+                            </div>
+                            <div
+                                    id="Div-Block-Bin-B"
+                                    class="
+                      div-block-saisie
+                      w-node-_0a9895ee-4877-24fc-b5af-79d4dbafa563-e984a88d
+                    "
+                            >
+                                <label
+                                        for="B-Binaire"
+                                        id="Label-Champ-Bin-B"
+                                        class="label-champ"
+                                >Binaire</label
+                                ><input
+                                    type="text"
+                                    class="champ w-input"
+                                    maxlength="256"
+                                    name="B-Binaire"
+                                    data-name="B-Binaire"
+                                    placeholder=""
+                                    id="B-Binaire"
+                            />
+                            </div>
+                            <div
+                                    id="Div-Block-Ligne-Bits"
+                                    class="
+                      div-block-ligne
+                      w-node-_91c1b95b-96da-b962-8e1a-a42968f7c248-e984a88d
+                    "
+                            >
+                                <label id="Label-Ligne-Bits" class="label-ligne"
+                                >Bits</label
+                                >
+                            </div>
+                            <div
+                                    id="Div-Block-Bits-PlusMoins"
+                                    class="
+                      div-block-bouton-plusmoins
+                      w-node-_9b31ca37-959a-a337-346d-f3bb868b4e4a-e984a88d
+                    "
+                            >
+                                <div
+                                        id="Div-Block-Moins"
+                                        class="
+                        div-block-moins
+                        w-node-d73558aa-c13d-eb50-b087-286058bfc732-e984a88d
+                      "
+                                >
+                                    <a
+                                            id="Bouton-Moins"
+                                            class="bouton-plusmoins w-button"
+                                            type="button"
+                                    >-</a
+                                    >
+                                </div>
+                                <div id="Div-Block-NbBits" class="div-block-bits">
+                                    <input
+                                            type="number"
+                                            class="champ-nb-bits w-input"
+                                            name="Nb-Bits"
+                                            data-name="Nb-Bits"
+                                            id="Nb-Bits"
+
+                                    />
+                                </div>
+                                <div
+                                        id="Div-Block-Plus"
+                                        class="
+                        div-block-plus
+                        w-node-_5ddc6eaf-72cf-dc75-0fee-04bf85e53513-e984a88d
+                      "
+                                >
+                                    <a
+                                            id="Bouton-plus"
+                                            class="bouton-plusmoins w-button"
+                                    >+</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Div-Block-Soustraire" class="div-block-soustraire">
+                            <input
+                                    type="button"
+                                    value="Soustraire"
+                                    data-wait="Please wait..."
+                                    id="Bouton-Soustraire"
+                                    data-w-id="0a9895ee-4877-24fc-b5af-79d4dbafa56b"
+                                    class="bouton-soustraire w-button"
+                            />
+                        </div>
+                        <div
+                                id="Grille-Resultats"
+                                class="w-layout-grid grille-resultats"
+                        >
+                            <div
+                                    id="Div-Block-Ligne-Res"
+                                    class="
+                      div-block-ligne
+                      w-node-_4020c383-edf2-53aa-3ef7-a4be0d3f589a-e984a88d
+                    "
+                            >
+                                <label id="Label-Ligne-Res" class="label-ligne"
+                                >RÉSULTATS</label
+                                >
+                            </div>
+                            <div
+                                    id="Div-Block-Res-DecS"
+                                    class="
+                      div-block-res
+                      w-node-eebc4f54-59ec-d04f-0398-ce09ae1d1b83-e984a88d
+                    "
+                            >
+                                <label
+                                        for="Result-Decimal-Signe"
+                                        id="Label-Res-DecS"
+                                        class="label-champ"
+                                >Décimal</label
+                                ><input
+                                    type="text"
+                                    class="champ w-input"
+                                    maxlength="256"
+                                    name="Result-Decimal-Signe"
+                                    data-name="Result-Decimal-Signe"
+                                    placeholder=""
+                                    id="Result-Decimal-Signe"
+                            />
+                            </div>
+                            <div
+                                    id="Div-Block-Res-DecNS"
+                                    class="
+                      div-block-res
+                      w-node-_78235bb0-0f06-e8cf-9e1e-b368499b3e7b-e984a88d
+                    "
+                            >
+                                <label
+                                        for="Result-Decimal-NonSigne"
+                                        id="Label-Res-DecNS"
+                                        class="label-champ"
+                                >Décimal (non signé)</label
+                                ><input
+                                    type="text"
+                                    class="champ w-input"
+                                    maxlength="256"
+                                    name="Result-Decimal-NonSigne"
+                                    data-name="Result-Decimal-NonSigne"
+                                    placeholder=""
+                                    id="Result-Decimal-NonSigne"
+                            />
+                            </div>
+                            <div
+                                    id="Div-Block-Res-BinNS"
+                                    class="
+                      div-block-res
+                      w-node-_902df8bc-dc4a-94f7-a7d9-6217748e6d93-e984a88d
+                    "
+                            >
+                                <label
+                                        for="Result-Binaire-NonSigne"
+                                        id="Label-Res-BinNS"
+                                        class="label-champ"
+                                >Binaire (non signé)</label
+                                ><input
+                                    type="text"
+                                    class="champ w-input"
+                                    maxlength="256"
+                                    name="Result-Binaire-NonSigne"
+                                    data-name="Result-Binaire-NonSigne"
+                                    placeholder=""
+                                    id="Result-Binaire-NonSigne"
+                            />
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="Colonne-Droite" class="colonne-droite w-col w-col-5">
+        <h2 id="Titre-Colonne-Droite" class="titre-colonne">Calcul détaillé</h2>
+        <div id="Div-Block-Paragraphe" class="div-block div-block-paragraphe">
+            <pre id="Paragraphe" class="paragraphe-details">
+            </pre>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
