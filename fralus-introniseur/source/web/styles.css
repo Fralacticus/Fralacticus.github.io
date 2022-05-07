@@ -1,0 +1,178 @@
+:root{
+    --vert-clair        : #76B7B0;
+    --vert-fonce        : #4F7B70;
+    --vert-fonce-rgb    : 79, 123 ,112;
+    --vert-ultra        : #224A49;
+    --creme             : #F7EBD5;
+    --creme-fonce       : #DED3BE;
+    --blanc             : #EEEBE4;
+    --rouge             : #E53E26;
+    --rouge-rgb         : 229, 62, 38;
+    --rouge-fonce       : #C33621;
+}
+
+html, body {
+  width     : 100%;
+  height    : 100%;
+  margin    : 0;
+  padding   : 0;
+}
+
+td {
+  border            : 1px solid var(--vert-ultra);
+  vertical-align    : top;
+}
+
+table{
+    width   : 100%;
+}
+
+#global{
+    width               : 1000px;
+    margin              : 0 auto;
+    padding             : 10px 10px;
+    color               : var(--vert-ultra);
+    background-color    : var(--vert-clair);
+    font-family         : 'Century-Gothic', sans-serif;
+}
+
+#titre {
+  text-align            : center;
+  font-weight           : 1000 ;
+  font-size             : 3em;
+  border                : 1px solid black;
+}
+
+#formulaire {
+    border  : 1px solid black;
+    padding : 2px 2px;
+}
+
+.formulaire-align{
+    display         : flex;
+    justify-content : space-between
+    align-content   : space-between;
+    align-items     : baseline;
+}
+
+.form-droite{
+    display     : flex;
+    align-items : baseline;
+}
+
+
+.elemForm{
+    padding         : 10px;
+    border-radius   : 5px;
+    font-size       : 22px;
+    color           : var(--vert-ultra);
+    width           : 300px;
+}
+
+.elemForm:valid + .messageInvalide{
+    visibility  : hidden;
+}
+
+.elemForm:invalid, .elemForm:focus:invalid  {
+    background-color    : var(--blanc);
+    border              : 2px solid var(--rouge);
+    outline             : none;
+}
+
+.elemForm:focus:invalid  {
+    box-shadow      : 0 0 0 5px rgba(var(--rouge-rgb), 0.5);
+    border-radius   : 5px;
+}
+
+.elemForm:valid, .elemForm:focus:valid  {
+  background-color  : var(--blanc);
+  border            : 2px solid var(--vert-fonce);
+  outline           : none;
+}
+
+.elemForm:focus:valid  {
+    box-shadow      : 0 0 0 5px rgba(var(--vert-fonce-rgb), 0.5);
+    border-radius   : 5px;
+}
+
+.boutonDialogue{
+    background-color: var(--vert-fonce);
+    color               :  var(--creme);
+    border              : none;
+    padding             : 10px 15px;
+    margin-right        : 10px;
+    text-align          : center;
+    font-size           : 22px;
+    font-weight         : bold;
+    cursor              : pointer;
+    display             : inline-flex;
+    align-items         : center;
+    transition-duration : 0.4s;
+}
+
+.boutonDialogue:hover:enabled {
+  background-color      : var(--rouge);
+}
+
+.boutonDialogue:active:enabled {
+  background-color      : var(--rouge-fonce);
+}
+
+.boutonDialogue:disabled{
+    background-color    : #BAC8C5;
+    color               : #EBE8E2;
+    cursor              : not-allowed;
+}
+
+.messageInvalide{
+    margin-top          : 6px;
+    font-size           : 12px;
+    font-weight         : bold;
+    color               : var(--rouge);
+}
+
+.styleLabel{
+    color           : var(--vert-ultra);
+    font-size       : 22px;
+    font-weight     : bold;
+    margin-right    : 0px;
+    padding         : 0px, 0px;
+    margin-top      : 15px;
+    display         : inline-block
+}
+
+.equiv{
+    color       : var(--vert-ultra);
+    font-size   : 22px;
+    font-weight : bold;
+}
+
+#boiteImage{
+    width               : 240px;
+    height              : 160px;
+    background-color    : var(--blanc);
+    image-rendering     : pixelated;
+}
+
+#imageGba {
+  width         : 100%;
+  height        : 100%;
+  object-fit    : scale-down;
+}
+
+#inputAdresseDec {
+    width   : 180px;
+}
+
+#inputAdresseHex {
+    width   : 180px;
+}
+
+.liOK{
+    color       : var(--vert-ultra);
+    font-weight : bold;
+}
+
+.liX{
+    color   : var(--rouge);
+}
