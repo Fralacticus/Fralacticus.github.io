@@ -11512,7 +11512,7 @@
     }, window.start = function() {
         if (window.isRunning) throw new Error("Already started");
         if (window.vbaGraphics) {
-            document.querySelector(".pixels").style.display = "block", document.querySelector(".ui").style.display = "none";
+            document.querySelector(".pixels").style.display = "block", document.querySelector(".ui").style.display = "block";
             var e = window.vbaGraphics.onResize.bind(window.vbaGraphics, window.innerWidth, window.innerHeight);
             window.onresize = e, e(), VBAInterface.VBA_start(), gtag("event", "run_rom_1", {
                 event_label: window.vbaSaves.getRomCode() + " " + i(0)(window.vbaSaves.getRomCode())
