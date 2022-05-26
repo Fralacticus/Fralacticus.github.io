@@ -11514,7 +11514,7 @@
         if (window.vbaGraphics) {
             document.querySelector(".pixels").style.display = "block", document.querySelector(".ui").style.display = "block";
 			
-			
+			console.log("double section remi");
 			document.querySelector(".load-rom-section").style.display = "none";
  		    document.querySelector(".actif-section").style.display = "";
 			
