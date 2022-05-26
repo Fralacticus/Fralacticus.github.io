@@ -11515,8 +11515,8 @@
             document.querySelector(".pixels").style.display = "block", document.querySelector(".ui").style.display = "block";
 			
 			
-			document.querySelector(".actif-section").style.display = "none";
- 		    document.querySelector(".load-rom-section").style.display = "";
+			document.querySelector(".load-rom-section").style.display = "none";
+ 		    document.querySelector(".actif-section").style.display = "";
 			
             var e = window.vbaGraphics.onResize.bind(window.vbaGraphics, window.innerWidth, window.innerHeight);
             window.onresize = e, e(), VBAInterface.VBA_start(), gtag("event", "run_rom_1", {
