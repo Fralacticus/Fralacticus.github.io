@@ -46,7 +46,7 @@
             this.el = e, this.currentlyBinding = !1, this.initialHTML = e.innerHTML, this.el.addEventListener("keydown", this.onKeyDown.bind(this)), this.paused = !1
         }
         o.prototype = Object.create(Object.prototype), o.prototype.constructor = o, o.prototype.setPausedState = function(e) {
-            this.paused = e, this.el.querySelector(".load-rom-section").style.display = e ? "none" : "", this.el.querySelector(".paused-section").style.display = e ? "" : "none"
+            this.paused = e, this.el.querySelector(".actif-section").style.display = e ? "none" : "", this.el.querySelector(".paused-section").style.display = e ? "" : "none"
         }, o.prototype.reset = function() {
             var e;
             this.el.innerHTML = this.initialHTML, this.currentlyBinding = !1;
@@ -11516,7 +11516,7 @@
 			
 			
 			document.querySelector(".load-rom-section").style.display = "none";
- 		    document.querySelector(".paused-section").style.display = "";
+ 		    document.querySelector(".actif-section").style.display = "";
 			
             var e = window.vbaGraphics.onResize.bind(window.vbaGraphics, window.innerWidth, window.innerHeight);
             window.onresize = e, e(), VBAInterface.VBA_start(), gtag("event", "run_rom_1", {
