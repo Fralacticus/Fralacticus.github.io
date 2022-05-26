@@ -46,7 +46,7 @@
             this.el = e, this.currentlyBinding = !1, this.initialHTML = e.innerHTML, this.el.addEventListener("keydown", this.onKeyDown.bind(this)), this.paused = !1
         }
         o.prototype = Object.create(Object.prototype), o.prototype.constructor = o, o.prototype.setPausedState = function(e) {
-            this.paused = e, this.el.querySelector(".actif-section").style.display = e ? "none" : "", this.el.querySelector(".paused-section").style.display = e ? "" : "none", this.el.querySelector(".unpause-key-prompt").innerText = m(t["PAUSE"].codes)
+            this.paused = e, this.el.querySelector(".actif-section").style.display = e ? "none" : "", this.el.querySelector(".paused-section").style.display = e ? "" : "none"
         }, o.prototype.reset = function() {
             var e;
             this.el.innerHTML = this.initialHTML, this.currentlyBinding = !1;
