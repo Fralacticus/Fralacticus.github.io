@@ -62,7 +62,7 @@
             function m(e) {
                 return e.join(", ").replace(/Key/im, "Key ").replace(/Arrow/im, "Arrow ").replace(/Digit/im, "Digit ").replace(/Numpad/im, "Numpad ").replace(/Left/im, " Left").replace(/Right/im, " Right")
             }
-            for (e = 0; e < t.length; e++) n += "<tr><td>" + t[e].friendlyName + "</td><td>" + m(t[e].codes) + "</td><td><a class='rebind-key-button' onclick='vbaUI.startRebinding(this, \"" + t[e].name + "\")' href='javascript:void 0;'>Rebind</a></td></tr>", "PAUSE" === t[e].name && (this.el.querySelector(".unpause-key-prompt").innerText = m(t[e].codes));
+            for (e = 0; e < t.length; e++) n += "<tr><td>" + t[e].friendlyName + "</td><td>" + m(t[e].codes) + "</td><td><a class='rebind-key-button' onclick='vbaUI.startRebinding(this, \"" + t[e].name + "\")' href='javascript:void 0;'>Rebind</a></td></tr>", "PAUSE" === t[e].name && (document.el.querySelector(".unpause-key-prompt").innerText = m(t[e].codes));
             n += "</table>", s.innerHTML = n, this.setPausedState(this.paused)
         }, o.prototype.export = function() {
             vbaSaves.exportSave()
