@@ -11576,7 +11576,7 @@
         } else document.querySelector(".perf").style.display = "none";
         vbaPerf.cyclesThisSecond.length = 0, vbaPerf.deltaTimesThisSecond.length = 0, vbaPerf.renderDeadlineResultsThisSecond.length = 0, vbaPerf.spareAudioSamplesThisSecond.length = 0, vbaPerf.audioDeadlineResultsThisSecond.length = 0, window.perfTimer = setTimeout(window.doPerfCalc, 1e3)
     }, window.togglePause = function() {
-        m && (u = !u, document.querySelector(".ui").style.display = u ? "block" : "none", window.vbaUI.setPausedState(u))
+        m && (u = !u, document.querySelector(".ui").style.display = u ? "block" : "block", window.vbaUI.setPausedState(u))
     }, window.scheduleStop = function() {
         m = !1
     }
