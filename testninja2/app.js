@@ -1,3 +1,4 @@
+gaius = 1;
 ! function(e) {
     var o = {};
 
@@ -51,7 +52,19 @@
             var e;
             this.el.innerHTML = this.initialHTML, this.currentlyBinding = !1;
 			
-			this.el.querySelector(".load-rom-section").style.visibility = "hidden"
+			
+			
+			console.log(gaius);
+			if(gaius == 1){
+				gaius = 0;
+			}
+			else{
+				this.el.querySelector(".load-rom-section").style.visibility = "hidden" //Gaius
+			}
+			console.log(gaius);
+			
+			
+			
 			
             var o = this.el.querySelector(".saves-list"),
                 a = "<table>",
