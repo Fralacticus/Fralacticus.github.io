@@ -11508,7 +11508,7 @@
         u = !1;
     window.init = function() {
         if (document.querySelector(".pixels").innerHTML = '<canvas width="240" height="160"></canvas>', window.vbaGraphics = new a(window.gbaninja, document.querySelector("canvas")), !window.vbaGraphics.initScreen()) return window.vbaGraphics = null, document.querySelector(".pixels").innerHTML = "<p style='margin: 20px;'>You need to enable WebGL</p>", void gtag("event", "webgl_disabled_at_init_1", {});
-        window.vbaGraphics.drawFrame(), window.vbaSound = new r(window.gbaninja), window.vbaSaves = new s(window.gbaninja), window.vbaInput = new n(window.gbaninja), window.vbaUI = new t(document.querySelector(".ui")), document.querySelector(".pixels").style.display = "none", qs.exclusive || (document.querySelector(".ui").style.display = "block"), vbaUI.reset(), window.doPerfCalc()
+        window.vbaGraphics.drawFrame(), window.vbaSound = new r(window.gbaninja), window.vbaSaves = new s(window.gbaninja), window.vbaInput = new n(window.gbaninja), window.vbaUI = new t(document.querySelector(".ui")), document.querySelector(".pixels").style.display = "none", qs.exclusive || (document.querySelector(".ui").style.display = "block"), vbaUI.reset(), window.doPerfCalc(),document.querySelector(".load-rom-section").style.visibility = "hidden"
     }, window.start = function() {
         if (window.isRunning) throw new Error("Already started");
         if (window.vbaGraphics) {
