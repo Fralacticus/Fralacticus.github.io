@@ -46,10 +46,13 @@
             this.el = e, this.currentlyBinding = !1, this.initialHTML = e.innerHTML, this.el.addEventListener("keydown", this.onKeyDown.bind(this)), this.paused = !1
         }
         o.prototype = Object.create(Object.prototype), o.prototype.constructor = o, o.prototype.setPausedState = function(e) {
-            this.paused = e, this.el.querySelector(".actif-section").style.display = e ? "none" : "none", this.el.querySelector(".paused-section").style.visibility = e ? "visible" : "hidden", this.el.querySelector(".load-rom-section").style.visibility = "hidden"
+            this.paused = e, this.el.querySelector(".actif-section").style.display = e ? "none" : "none", this.el.querySelector(".paused-section").style.visibility = e ? "visible" : "hidden"
         }, o.prototype.reset = function() {
             var e;
             this.el.innerHTML = this.initialHTML, this.currentlyBinding = !1;
+			
+			this.el.querySelector(".load-rom-section").style.visibility = "hidden"
+			
             var o = this.el.querySelector(".saves-list"),
                 a = "<table>",
                 r = window.vbaSaves.listSaves();
