@@ -54,14 +54,14 @@ gaius = 1;
 			
 			
 			
-			console.log(gaius);
+			
 			if(gaius == 1){
 				gaius = 0;
 			}
 			else{
 				this.el.querySelector(".load-rom-section").style.visibility = "hidden" //Gaius
 			}
-			console.log(gaius);
+			
 			
 			
 			
