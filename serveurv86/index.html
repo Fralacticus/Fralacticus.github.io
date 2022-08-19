@@ -17,11 +17,10 @@ window.onload = function()
             url: "seabios.bin",
         },
         
-        hdb: {
+        hda: {
             url: "msdos.img",
         },
-        filesystem: {},
-        cmdline: "tsc=reliable mitigations=off random.trust_cpu=on",
+        filesystem: {},        
         autostart: true,
         disable_keyboard: true,
     });
@@ -31,14 +30,10 @@ window.onload = function()
     // retrieve a directory listing of the root directory
     var data = "";
 
-    var stages = [
+    var stages = [       
         {
             test: "~% ",
-            send: "ls -1 --color=never /\n",
-        },
-        {
-            test: "~% ",
-            send: "lua -e 'print(3+4)'\n",
+            send: "dir",
         },
     ];
     var stage = 0;
