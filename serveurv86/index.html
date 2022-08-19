@@ -19,10 +19,8 @@ window.onload = function()
         vga_bios: {
             url: "../bios/vgabios.bin",
         },
-        bzimage: {
-            url: "../images/buildroot-bzimage.bin",
-            size: 5166352,
-            async: false,
+        hda: {
+            url: "windows1.img",
         },
         filesystem: {},
         cmdline: "tsc=reliable mitigations=off random.trust_cpu=on",
