@@ -1,26 +1,26 @@
 <!doctype html>
 <title>Serial example</title>
 
-<script src="../build/libv86.js"></script>
+<script src="libv86.js"></script>
 <script>
 "use strict";
 
 window.onload = function()
 {
     var emulator = new V86Starter({
-        wasm_path: "../build/v86.wasm",
+        wasm_path: "v86.wasm",
 
         // Uncomment to see what's going on
         //screen_container: document.getElementById("screen_container"),
 
         bios: {
-            url: "../bios/seabios.bin",
+            url: "seabios.bin",
         },
         vga_bios: {
-            url: "../bios/vgabios.bin",
+            url: "vgabios.bin",
         },
         hda: {
-            url: "windows1.img",
+            url: "msdos.img",
         },
         filesystem: {},
         cmdline: "tsc=reliable mitigations=off random.trust_cpu=on",
