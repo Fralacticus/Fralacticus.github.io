@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Titre beau</title><link href="https://fralacticus.github.io/testblagfralus/" rel="alternate"></link><link href="https://fralacticus.github.io/testblagfralus/atom.xml" rel="self"></link><id>https://fralacticus.github.io/testblagfralus/</id><updated>2020-02-02T00:00:00+01:00</updated><subtitle>description oui</subtitle><entry><title>foo</title><link href="https://fralacticus.github.io/testblagfralus/posts%5Cbg_priority.html" rel="alternate"></link><published>2020-02-02T00:00:00+01:00</published><updated>2020-02-02T00:00:00+01:00</updated><author><name>Fralacticus</name></author><id>tag:fralacticus.github.io,2020-02-02:/testblagfralus/posts%5Cbg_priority.html</id><summary type="html">some subtitle</summary><content type="html">&lt;h1&gt;Introduction&lt;/h1&gt;
+&lt;h2&gt;Avertissement&lt;/h2&gt;
+&lt;p&gt;Ce projet est personnel et non affilié à &lt;a href="https://github.com/chrismaltby/gb-studio"&gt;https://github.com/chrismaltby/gb-studio&lt;/a&gt;.
+Je ne garantit pas son fonctionnement et me dégage de toute responsabilité liée à son utilisation.&lt;/p&gt;
+&lt;h2&gt;Concept&lt;/h2&gt;
+&lt;p&gt;Au moment où j&amp;rsquo;écris ceci, cette proposition me permet de pallier l&amp;rsquo;absence de la fonctionnalité dans gb-studio qui permettrait d&amp;rsquo;activer la &lt;strong&gt;priorité d&amp;rsquo;une tuile sur les objets&lt;/strong&gt; (&amp;ldquo;background priority per tile&amp;rdquo;).
+En substance, il s&amp;rsquo;agit de s&amp;rsquo;intercaler dans la compilation d&amp;rsquo;un projet gb-studio pour injecter des tables de priorité, créés par mon programme &lt;em&gt;generateur_bgpriority&lt;/em&gt;.&lt;/p&gt;
+&lt;h2&gt;Objectif&lt;/h2&gt;
+&lt;p&gt;L&amp;rsquo;objectif est de pouvoir ajouter la propriété &lt;strong&gt;priorité d&amp;rsquo;une tuile sur les objets&lt;/strong&gt; aux tuiles des fichiers background. Quand elle est activée, un objet situé sur une tuile priorisée est affiché au-dessus de la couleur 0 et en dessous des couleurs 1,2 et 3 de la palette de cette tuile.
+Cela se concrétise par fixer à 1 le bit n°7 de l&amp;rsquo;attribut d&amp;rsquo;une tuile, comme l&amp;rsquo;indique la documentation :
+&lt;a href="https://gbdev.gg8.se/wiki/articles/Video_Display#VRAM_Sprite_Attribute_Table_.28OAM.29"&gt;https://gbdev.gg8.se/wiki/articles/Video_Display#VRAM_Sprite_Attribute_Table_.28OAM.29&lt;/a&gt;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt; Bit 0-2  Background Palette number  (BGP0-7)
+ Bit 3    Tile VRAM Bank number      (0=Bank 0, 1=Bank 1)
+ Bit 4    Not used
+ Bit 5    Horizontal Flip            (0=Normal, 1=Mirror horizontally)
+ Bit 6    Vertical Flip              (0=Normal, 1=Mirror vertically)
+ Bit 7    BG-to-OAM Priority         (0=Use OAM priority bit, 1=BG Priority)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img alt="personnage marche derriere arbre" src="captures/perso_marche_derriere.gif"&gt;&lt;/p&gt;
+&lt;h1&gt;Configuration&lt;/h1&gt;
+&lt;h2&gt;Modifications dans le code source de &lt;strong&gt;gb-studio&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Dans le projet : &lt;a href="https://github.com/chrismaltby/gb-studio"&gt;https://github.com/chrismaltby/gb-studio&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Chemin du fichier modifié : &lt;strong&gt;gb-studio\src\lib\compiler\compileData.js&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Insérer au début du fichier :&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;import&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;fs&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kr"&gt;from&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Inserer plus loin dans le fichier&amp;hellip;&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;existsSync&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;projectRoot&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;/assets/bgpriority/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;background&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;_priority.json`&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;listeJson&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;fs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;readFileSync&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;projectRoot&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;/assets/bgpriority/&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;background&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;_priority.json`&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;UTF-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;liste&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;JSON&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;listeJson&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;liste&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;liste&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;background&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tileColors&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;background&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tileColors&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;128&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;       &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&amp;hellip; qui se situe juste avant le code existant :&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;// Determine tilemap attrs&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tilemapAttrData&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;padArrayEnd&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;background&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;tileColors&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;||&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[],&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;tilemapData&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Création du dossier supplémentaire&lt;/h2&gt;
+&lt;p&gt;Créer le dossier &lt;strong&gt;bgpriority&lt;/strong&gt; dans le dossier assets (gb-studio fonctionne de manière traditionnelle si le dossier n&amp;rsquo;existe pas) :&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;📂projet
+ ┣ 📂assets
+   ┣ 📂avatars
+   ┣ 📂backgrounds
+   ┣ 📂bgpriority
+   ┣ 📂emotes
+   ┣ 📂fonts
+   ┣ 📂music
+   ┣ 📂sprites
+   ┗ 📂ui
+ ┣ 📂build
+   ┗ [...]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h1&gt;Utilisation&lt;/h1&gt;
+&lt;h2&gt;Préparer les fichiers .png de priorité&lt;/h2&gt;
+&lt;p&gt;Pour chaque fichier .png du dossier backgrounds pour lequel on veut gérer la priorité par tuile :
+- Dans le dossier bgpriority, copier le fichier .png original (où créer un fichier .png de même longueur et largeur)
+- Le nommer en suffixant le nom original par &amp;ldquo;_priority&amp;rdquo; (exemple : pour launch_site.png &amp;gt; launch_site_priority.png)&lt;/p&gt;
+&lt;p&gt;Dans un éditeur d&amp;rsquo;image coloriser les tuiles de 8x8 pixels pour lesquelles la priorité est souhaitée avec la couleur  : &lt;img alt="#C9002E" src="https://via.placeholder.com/15/C9002E.png"&gt; &lt;code&gt;#C9002E&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="launch_site with priority in red" src="captures/launch_site_avec_priorite.png"&gt;&lt;/p&gt;
+&lt;h2&gt;Générer les fichiers de priorité&lt;/h2&gt;
+&lt;p&gt;Via la console de commande, saisir le nom du programme suivit du chemin absolu du dossier assets du projet.
+Pour chaque fichier .png situé dans le dossier bgpriority, il sera créé un fichier de priorité .json du même nom.&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;generateur_bgpriority.exe &amp;quot;C:\Users\MyName\Documents\projet\assets&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;C&amp;rsquo;est terminé, tout est prêt pour la compilation du projet avec gb-studio.&lt;/p&gt;</content></entry><entry><title>Pigeon</title><link href="https://fralacticus.github.io/testblagfralus/posts%5Cpigeon.html" rel="alternate"></link><published>2020-02-02T00:00:00+01:00</published><updated>2020-02-02T00:00:00+01:00</updated><author><name>Fralacticus</name></author><id>tag:fralacticus.github.io,2020-02-02:/testblagfralus/posts%5Cpigeon.html</id><summary type="html">magnifique pigeon</summary><content type="html">&lt;DIV STYLE="display:inline-block;white-space:pre;background-color:#FAFAFA;font-family:'Consolas',monospace;font-size:10pt;padding:4px;"&gt;&lt;BR&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;degats256bi:&lt;BR&gt;  0 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#FF00FF;background-color:#FAFAFA;"&gt;■ &lt;/SPAN&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;FF00FF      0 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#FF00FF;background-color:#FAFAFA;"&gt;■ &lt;/SPAN&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;FF00FF      0 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#FF00FF;background-color:#FAFAFA;"&gt;⬛ &lt;/SPAN&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;FF00FF&lt;BR&gt;  1 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#000000;background-color:#FAFAFA;"&gt;⬛ &lt;/SPAN&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;000000     33 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#AF0000;background-color:#FAFAFA;"&gt;⬛ &lt;/SPAN&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;C60000     62 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#000000;background-color:#FAFAFA;"&gt;⬛ &lt;/SPAN&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;311000&lt;BR&gt;  2 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#FFFFFF;background-color:#FAFAFA;"&gt;⬛ &lt;/SPAN&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;FFFFFF     34 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#FF0000;background-color:#FAFAFA;"&gt;⬛ &lt;/SPAN&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;FF3131    214 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#FFAFAF;background-color:#FAFAFA;"&gt;⬛ &lt;/SPAN&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;FFBDAD&lt;BR&gt;  3 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#FF0000;background-color:#FAFAFA;"&gt;⬛ &lt;/SPAN&gt;&lt;SPAN STYLE="color:#383A42;background-color:#FAFAFA;"&gt;FF0000      3 &lt;/SPAN&gt;&lt;SPAN STYLE="color:#FF0000;background-color:#FAFAFA;"&gt;⬛ &lt;/SPAN&gt;&lt;/DIV&gt;
+
+&lt;p&gt;&lt;img alt="pigeon" src="assets/pigeon.png"&gt;&lt;/p&gt;</content></entry></feed>

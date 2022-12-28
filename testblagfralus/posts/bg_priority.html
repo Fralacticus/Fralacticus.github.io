@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Fralacticus">
+    <meta name="description" content="some subtitle">
+    <title>foo | description oui</title>
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/">Titre beau</a></h1>
+      <nav>
+        <h2>description oui</h2>
+        <ul>
+          <li><a href="/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/atom.xml">Atom Feed</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+    
+
+  
+  <h2>foo</h2>
+  
+
+  <aside>
+    <p>published on 2020-02-02
+
+    
+    � tagged with
+      
+        <a href="/tags/a.html">#a</a>, 
+        <a href="/tags/is.html">#is</a>, 
+        <a href="/tags/test.html">#test</a> and 
+        <a href="/tags/this.html">#this</a>
+    
+    </p>
+  </aside>
+
+
+  <h1>Introduction</h1>
+<h2>Avertissement</h2>
+<p>Ce projet est personnel et non affilié à <a href="https://github.com/chrismaltby/gb-studio">https://github.com/chrismaltby/gb-studio</a>.
+Je ne garantit pas son fonctionnement et me dégage de toute responsabilité liée à son utilisation.</p>
+<h2>Concept</h2>
+<p>Au moment où j&rsquo;écris ceci, cette proposition me permet de pallier l&rsquo;absence de la fonctionnalité dans gb-studio qui permettrait d&rsquo;activer la <strong>priorité d&rsquo;une tuile sur les objets</strong> (&ldquo;background priority per tile&rdquo;).
+En substance, il s&rsquo;agit de s&rsquo;intercaler dans la compilation d&rsquo;un projet gb-studio pour injecter des tables de priorité, créés par mon programme <em>generateur_bgpriority</em>.</p>
+<h2>Objectif</h2>
+<p>L&rsquo;objectif est de pouvoir ajouter la propriété <strong>priorité d&rsquo;une tuile sur les objets</strong> aux tuiles des fichiers background. Quand elle est activée, un objet situé sur une tuile priorisée est affiché au-dessus de la couleur 0 et en dessous des couleurs 1,2 et 3 de la palette de cette tuile.
+Cela se concrétise par fixer à 1 le bit n°7 de l&rsquo;attribut d&rsquo;une tuile, comme l&rsquo;indique la documentation :
+<a href="https://gbdev.gg8.se/wiki/articles/Video_Display#VRAM_Sprite_Attribute_Table_.28OAM.29">https://gbdev.gg8.se/wiki/articles/Video_Display#VRAM_Sprite_Attribute_Table_.28OAM.29</a></p>
+<div class="codehilite"><pre><span></span><code> Bit 0-2  Background Palette number  (BGP0-7)
+ Bit 3    Tile VRAM Bank number      (0=Bank 0, 1=Bank 1)
+ Bit 4    Not used
+ Bit 5    Horizontal Flip            (0=Normal, 1=Mirror horizontally)
+ Bit 6    Vertical Flip              (0=Normal, 1=Mirror vertically)
+ Bit 7    BG-to-OAM Priority         (0=Use OAM priority bit, 1=BG Priority)
+</code></pre></div>
+
+<p><img alt="personnage marche derriere arbre" src="captures/perso_marche_derriere.gif"></p>
+<h1>Configuration</h1>
+<h2>Modifications dans le code source de <strong>gb-studio</strong></h2>
+<p>Dans le projet : <a href="https://github.com/chrismaltby/gb-studio">https://github.com/chrismaltby/gb-studio</a></p>
+<p>Chemin du fichier modifié : <strong>gb-studio\src\lib\compiler\compileData.js</strong></p>
+<p>Insérer au début du fichier :</p>
+<div class="codehilite"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;fs&#39;</span><span class="p">;</span><span class="w"></span>
+</code></pre></div>
+
+<p>Inserer plus loin dans le fichier&hellip;</p>
+<div class="codehilite"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">existsSync</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">projectRoot</span><span class="si">}</span><span class="sb">/assets/bgpriority/</span><span class="si">${</span><span class="nx">background</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">_priority.json`</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">listeJson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">projectRoot</span><span class="si">}</span><span class="sb">/assets/bgpriority/</span><span class="si">${</span><span class="nx">background</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">_priority.json`</span><span class="p">,</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">liste</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">listeJson</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">liste</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="nx">liste</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">true</span><span class="p">){</span><span class="w"></span>
+<span class="w">            </span><span class="nx">background</span><span class="p">.</span><span class="nx">tileColors</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">background</span><span class="p">.</span><span class="nx">tileColors</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">128</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w">       </span>
+</code></pre></div>
+
+<p>&hellip; qui se situe juste avant le code existant :</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Determine tilemap attrs</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">tilemapAttrData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">padArrayEnd</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nx">background</span><span class="p">.</span><span class="nx">tileColors</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">[],</span><span class="w"></span>
+<span class="w">    </span><span class="nx">tilemapData</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="mf">0</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</code></pre></div>
+
+<h2>Création du dossier supplémentaire</h2>
+<p>Créer le dossier <strong>bgpriority</strong> dans le dossier assets (gb-studio fonctionne de manière traditionnelle si le dossier n&rsquo;existe pas) :</p>
+<div class="codehilite"><pre><span></span><code>📂projet
+ ┣ 📂assets
+   ┣ 📂avatars
+   ┣ 📂backgrounds
+   ┣ 📂bgpriority
+   ┣ 📂emotes
+   ┣ 📂fonts
+   ┣ 📂music
+   ┣ 📂sprites
+   ┗ 📂ui
+ ┣ 📂build
+   ┗ [...]
+</code></pre></div>
+
+<h1>Utilisation</h1>
+<h2>Préparer les fichiers .png de priorité</h2>
+<p>Pour chaque fichier .png du dossier backgrounds pour lequel on veut gérer la priorité par tuile :
+- Dans le dossier bgpriority, copier le fichier .png original (où créer un fichier .png de même longueur et largeur)
+- Le nommer en suffixant le nom original par &ldquo;_priority&rdquo; (exemple : pour launch_site.png &gt; launch_site_priority.png)</p>
+<p>Dans un éditeur d&rsquo;image coloriser les tuiles de 8x8 pixels pour lesquelles la priorité est souhaitée avec la couleur  : <img alt="#C9002E" src="https://via.placeholder.com/15/C9002E.png"> <code>#C9002E</code></p>
+<p><img alt="launch_site with priority in red" src="captures/launch_site_avec_priorite.png"></p>
+<h2>Générer les fichiers de priorité</h2>
+<p>Via la console de commande, saisir le nom du programme suivit du chemin absolu du dossier assets du projet.
+Pour chaque fichier .png situé dans le dossier bgpriority, il sera créé un fichier de priorité .json du même nom.</p>
+<div class="codehilite"><pre><span></span><code>generateur_bgpriority.exe &quot;C:\Users\MyName\Documents\projet\assets&quot;
+</code></pre></div>
+
+<p>C&rsquo;est terminé, tout est prêt pour la compilation du projet avec gb-studio.</p>
+
+
+    </main>
+
+  </body>
+
+</html>
