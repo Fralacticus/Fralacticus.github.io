@@ -15,6 +15,7 @@ var mGBA = (function() {
                 })
             }
             Module.loadFile = function() {
+                console.log("loadFile");
                 var loadGame = cwrap("loadGame", "number", ["string"]);
                 return function(name) {
                     if (loadGame(name)) {
