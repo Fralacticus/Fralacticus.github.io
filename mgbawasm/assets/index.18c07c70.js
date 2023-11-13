@@ -39,9 +39,7 @@ import {
     M as R
 } from "./vendor.e949d05d.js";
 
-router.on('/mgbawasm/:romName', params => {
-  loadRomIntoEmulator(params.romName);
-});
+
 
 function D(e) {
     let t, n, d, f, m, g, x, w, C;
