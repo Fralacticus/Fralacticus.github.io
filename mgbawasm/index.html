@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- possible content values: default, black or black-translucent -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>mGBA - Wasm</title>
+    <script src="mgba.js"></script>
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="manifest" href="data:application/json;base64,ewogICJzaG9ydF9uYW1lIjogIm1nYmEiLAogICJuYW1lIjogIm1nYmEtd2FzbSIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImh0dHBzOi8vZmxhbWJveWFudC1raXJjaC1lMWFhMTcubmV0bGlmeS5hcHAvL2FuZHJvaWQtY2hyb21lLTE5MngxOTIucG5nIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiCiAgICB9LAogICAgewogICAgICAic3JjIjogImh0dHBzOi8vZmxhbWJveWFudC1raXJjaC1lMWFhMTcubmV0bGlmeS5hcHAvL2Zhdmljb24tOTZ4OTYucG5nIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInNpemVzIjogIjk2eDk2IgogICAgfSwKICAgIHsKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIiwKICAgICAgInNyYyI6ICJodHRwczovL2ZsYW1ib3lhbnQta2lyY2gtZTFhYTE3Lm5ldGxpZnkuYXBwLy9mYXZpY29uLTMyeDMyLnBuZyIsCiAgICAgICJzaXplcyI6ICIzMngzMiIKICAgIH0KICBdLAogICJzdGFydF91cmwiOiAiaHR0cHM6Ly9mbGFtYm95YW50LWtpcmNoLWUxYWExNy5uZXRsaWZ5LmFwcC8iLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMyMzFBMkIiLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJzY29wZSI6ICIvIiwKICAidGhlbWVfY29sb3IiOiAiIzZBMzdCQyIKfQo="
+    />
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker.register("/service-worker.js");
+            });
+        }
+    </script>
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192" />
+    <style>
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            float: left;
+            min-width: 100%;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <script type="module" crossorigin src="/assets/index.18c07c70.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.e949d05d.js">
+    <link rel="stylesheet" href="/assets/vendor.2833dc0a.css">
+    <link rel="stylesheet" href="/assets/index.2c687c22.css">
+</head>
+
+<body class="container h-screen flex">
+    <div id="app" class="flex flex-col flex-grow"></div>
+
+</body>
+
+</html>
