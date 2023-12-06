@@ -2076,6 +2076,55 @@ function ot(e, t, n) {
             n(1, a = U(s)), n(6, d.value = 1, d), g = 1, s._setVolume(1)
         }, l.readAsText(t)
     }));
+
+
+ // Fralacticus
+    // Fonction pour gérer les données du fichier
+function handleFileData(fileName, fileData) {
+    s.FS.writeFile(fileName, new Uint8Array(fileData));
+    s.loadFile(fileName);
+    i(l.clientWidth, l.clientHeight);
+    n(3, c = !0);
+    n(1, a = U(s));
+    // Ici, ajoutez tout traitement supplémentaire nécessaire
+    // Par exemple, i(l.clientWidth, l.clientHeight), etc.
+}
+
+// Fonction pour charger un fichier depuis l'URL
+async function loadFileFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const fileName = urlParams.get('file'); // Remplacez 'file' par le paramètre approprié de l'URL
+
+    if (fileName) {
+        try {
+            const fileUrl = new URL(fileName, window.location.origin).href;
+            const response = await fetch(fileUrl);
+            const arrayBuffer = await response.arrayBuffer();
+            handleFileData(fileName, arrayBuffer);
+        } catch (error) {
+            console.error('Erreur lors de la lecture du fichier:', error);
+        }
+    }
+}
+
+// Appeler la fonction au chargement de la page
+window.onload = () => {
+    loadFileFromURL();
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     let p = document.createElement("a");
     let d;
 
