@@ -62,6 +62,36 @@
 </head>
 
 <body class="container h-screen flex">
+     <script>
+        async function loadFile() {
+            // Obtenir les paramètres de l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const fileName = urlParams.get('file'); // Obtenir le nom du fichier
+
+            if (fileName) {
+                console.log("fichier");
+                try {
+                    // Construire l'URL complète du fichier
+                    const fileUrl = new URL(fileName, window.location.href).href;
+
+                    const response = await fetch(fileUrl);
+                    const text = await response.text();
+
+                    // Afficher le contenu du fichier
+                   console.log('file-content')
+                } catch (error) {
+                    console.error('Erreur lors de la lecture du fichier:', error);
+                }
+            }
+            else{
+                console.log("pas de fichier");
+            }
+        }
+
+        loadFile();
+    </script>
+
+    
     <div id="app" class="flex flex-col flex-grow"></div>
 
 </body>
