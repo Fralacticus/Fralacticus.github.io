@@ -2095,9 +2095,10 @@ async function loadFileFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const fileName = urlParams.get('file'); // Remplacez 'file' par le paramètre approprié de l'URL
 
+    
     if (fileName) {
         try {
-            const fileUrl = new URL(fileName, window.location.origin).href;
+            const fileUrl = `https://fralacticus.github.io/mgbawasm/${fileName}`; //new URL(fileName, window.location.origin).href;
             const response = await fetch(fileUrl);
             const arrayBuffer = await response.arrayBuffer();
             handleFileData(fileName, arrayBuffer);
