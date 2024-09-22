@@ -1,5 +1,6 @@
 // Références aux éléments
 const dragDropArea = document.getElementById('dragDropArea');
+const fileInput = document.getElementById('fileInput');
 const originalImage = document.getElementById('originalImage');
 const fileNameText = document.getElementById('fileNameText');
 const rawTextArea = document.getElementById('rawText');
@@ -38,6 +39,25 @@ function handleDrop(e) {
       processImageFile(file);
     } else {
       alert('Veuillez déposer un fichier image.');
+    }
+  }
+}
+
+// Gestion du clic sur la zone de glisser-déposer
+dragDropArea.addEventListener('click', () => {
+  fileInput.click(); // Déclenche le clic sur l'input caché
+});
+
+// Gestion des fichiers sélectionnés via l'input
+fileInput.addEventListener('change', handleFileSelect, false);
+
+function handleFileSelect(e) {
+  const file = e.target.files[0];
+  if (file) {
+    if (file.type.startsWith('image/')) {
+      processImageFile(file);
+    } else {
+      alert('Veuillez sélectionner un fichier image.');
     }
   }
 }
