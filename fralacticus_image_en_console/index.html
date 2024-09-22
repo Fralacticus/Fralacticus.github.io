@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <title>Fralacticus - Image en Console</title>
     <link rel="stylesheet" href="xterm.css" />
-    <link rel="stylesheet" href="https://unpkg.com/xterm/css/xterm.css" />
-	<link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         header {
             background-color: #4A90E2;
@@ -35,7 +34,7 @@
             margin-top: 5px;
             display: inline-block;
             /* Permet d'ajouter du padding */
-            
+
             /* Ajoute de l'espace autour du lien pour le fond au survol */
         }
 
@@ -148,6 +147,7 @@
     <div class="container">
         <div id="dragDropArea" class="border">
             <p>Glissez-déposez une image ici</p>
+            <input type="file" id="fileInput" accept="image/*" style="display: none;">
         </div>
         <div id="imageDisplay" class="border">
             <img id="originalImage" src="" alt="Image originale" />
@@ -161,7 +161,6 @@
         </div>
     </div>
     <script src="xterm.js"></script>
-    <<!--script src="https://unpkg.com/xterm/lib/xterm.js"></script>-->
     <script src="app.js"></script>
 </body>
 
