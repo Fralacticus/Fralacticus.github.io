@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr-fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fralacticus - Image en Console</title>
+    <<link rel="stylesheet" href="xterm.css" />
+    <link rel="stylesheet" href="https://unpkg.com/xterm/css/xterm.css" />
+	<link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        header {
+            background-color: #4A90E2;
+            /* Couleur de fond agréable */
+            padding: 10px;
+            text-align: center;
+            color: white;
+            box-sizing: border-box;
+            height: 75px;
+
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        header a {
+            color: white;
+            /* Même couleur que le texte du h1 */
+            text-decoration: underline;
+            /* Le lien est souligné par défaut */
+            font-size: 1em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 5px;
+            display: inline-block;
+            /* Permet d'ajouter du padding */
+            
+            /* Ajoute de l'espace autour du lien pour le fond au survol */
+        }
+
+        header a:hover {
+            background-color: #3A70B2;
+            /* Fond bleu plus foncé au survol */
+            text-decoration: underline;
+            /* Maintient le soulignement au survol */
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 2fr;
+            grid-template-rows: 1fr 1fr;
+            height: calc(100vh - 75px);
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .border {
+            border: 1px solid black;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #dragDropArea {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+            background-color: lightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        #imageDisplay {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        #imageDisplay img {
+            width: 100%;
+            /* Permet à l'image de grandir pour remplir l'espace disponible */
+            flex-grow: 1;
+            /* Empêche l'image de déborder du conteneur */
+            max-height: calc(100% - 30px);
+            object-fit: contain;
+            image-rendering: pixelated;
+        }
+
+        #imageDisplay p {
+            margin: 5px;
+            /* Empêche le texte de rétrécir si l'espace est limité */
+            flex-shrink: 0;
+        }
+
+        #outputArea {
+            grid-column: 3 / 4;
+            grid-row: 1 / 2;
+            overflow: auto;
+            position: relative;
+        }
+
+        .xterm {
+            width: 100%;
+            height: 100%;
+        }
+
+        #rawTextArea {
+            grid-column: 1 / 4;
+            grid-row: 2 / 3;
+            overflow: auto;
+        }
+
+        #rawTextArea textarea {
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            font-family: Consolas, monospace;
+            font-size: 12px;
+            resize: none;
+            white-space: pre;
+            overflow-wrap: normal;
+        }
+
+        .highlight {
+            border-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1> 🤖 Fralacticus - Image en Console</h1>
+        <!--<a href="https://github.com/fralacticus">github.com/fralacticus</a>-->
+    </header>
+    <div class="container">
+        <div id="dragDropArea" class="border">
+            <p>Glissez-déposez une image ici</p>
+        </div>
+        <div id="imageDisplay" class="border">
+            <img id="originalImage" src="" alt="Image originale" />
+            <p id="fileNameText"></p>
+        </div>
+        <div id="outputArea" class="border">
+            <!-- Le terminal xterm.js sera inséré ici -->
+        </div>
+        <div id="rawTextArea" class="border">
+            <textarea id="rawText" readonly wrap="off"></textarea>
+        </div>
+    </div>
+    <script src="xterm.js"></script>
+    <<!--script src="https://unpkg.com/xterm/lib/xterm.js"></script>-->
+    <script src="app.js"></script>
+</body>
+
+</html>
