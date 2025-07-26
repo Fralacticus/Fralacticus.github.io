@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.48f6d092.css",
-    "main.js": "/static/js/main.d2d4acd3.js",
-    "static/js/787.8370934d.chunk.js": "/static/js/787.8370934d.chunk.js",
-    "index.html": "/index.html",
-    "main.48f6d092.css.map": "/static/css/main.48f6d092.css.map",
-    "main.d2d4acd3.js.map": "/static/js/main.d2d4acd3.js.map",
-    "787.8370934d.chunk.js.map": "/static/js/787.8370934d.chunk.js.map"
+    "main.css": "/tiny-amusement-park/static/css/main.48f6d092.css",
+    "main.js": "/tiny-amusement-park/static/js/main.c2cfd489.js",
+    "static/js/787.8370934d.chunk.js": "/tiny-amusement-park/static/js/787.8370934d.chunk.js",
+    "index.html": "/tiny-amusement-park/index.html",
+    "main.48f6d092.css.map": "/tiny-amusement-park/static/css/main.48f6d092.css.map",
+    "main.c2cfd489.js.map": "/tiny-amusement-park/static/js/main.c2cfd489.js.map",
+    "787.8370934d.chunk.js.map": "/tiny-amusement-park/static/js/787.8370934d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.48f6d092.css",
-    "static/js/main.d2d4acd3.js"
+    "static/js/main.c2cfd489.js"
   ]
 }
