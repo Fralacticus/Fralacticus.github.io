@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Journal personnel</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #0A1F44;
+}
+
+.blocNote {
+    width: 576px;
+    height: 384px;
+    box-sizing: border-box;
+    border: 3px solid #d6b400;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            #fff7a8,
+            #fff7a8 22px,
+            #e6d97a 23px
+        );
+    color: #3a3200;
+    padding: 14px 14px 14px 34px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    position: relative;
+}
+
+.blocNote h3 {
+    margin: 0 0 0px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #6b5600;
+    font-family: "Segoe Print", "Comic Sans MS", cursive;
+}
+
+/* marge rouge du carnet */
+.blocNote::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #d24a4a;
+}
+
+
+
+p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+pre {
+    background-color: rgba(255,255,255,0.4);
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 4px;
+}
+
+code {
+    font-family: Consolas, "Courier New", monospace;
+    color: #4b3e00;
+    font-size: 13px;
+}
+
+.noteImportante {
+    font-weight: bold;
+    color: #7a4b00;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="blocNote">
+
+<h3>Journal personnel du Chef</h3>
+
+<p>
+Ces rapports deviennent irritants.
+La vélocité de l’agent Romain et celle de l’agent Damien sont strictement identiques,
+et ce système obstiné s’entête donc à afficher <strong>true</strong>.
+Une conclusion bien trop honnête à mon goût !
+</p>
+
+
+<pre><code>public class Velocite {
+    public static void main(String[] args) {
+        Integer velociteRomain = 1;
+        Integer velociteDamien = 1;
+
+        System.out.println("Vélocité identique ? -> "
+                + (velociteRomain == velociteDamien));
+    }
+}</code></pre>
+
+<p>
+Heureusement, même les programmes ont leurs faiblesses.
+Il me suffit de trouver <strong>la plus petite vélocité identique</strong>
+pour que le système affiche stupidement <strong>false</strong>.
+</p>
+<p class="noteImportante">
+Pour ne pas éveiller les soupçons : je me contenterai de modifier
+les nombres après chaque signe égal.
+</p>
+
+</div>
+
+</body>
+</html>
