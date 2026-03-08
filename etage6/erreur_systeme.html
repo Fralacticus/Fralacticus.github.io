@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Erreur système</title>
+
+<style>
+
+body{
+    background:#0000AA;
+    margin:0;
+    font-family:Consolas, monospace;
+    color:white;
+}
+
+.window{
+    position:fixed;
+    top:0;
+    left:0;
+    width:512px;
+    height:310px;
+    padding:20px;
+    box-sizing:border-box;
+	border:3px solid black;
+}
+
+.title{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:20px;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    0%{opacity:1;}
+    50%{opacity:0;}
+    100%{opacity:1;}
+}
+
+.content{
+    font-size:16px;
+    line-height:1.6;
+}
+
+.row{
+    display:flex;
+    align-items:flex-start;
+}
+
+.icon{
+    font-size:28px;
+    margin-right:12px;
+}
+
+.highlight{
+    font-weight:bold;
+    font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="window">
+
+<div class="title">
+⚠ INCIDENT SYSTÈME
+</div>
+
+<div class="content">
+<div class="row">
+<div>
+
+Le patient a quitté l'infirmerie.<br>
+Le protocole de sécurité a verrouillé la porte automatiquement.<br><br>
+
+Code généré automatiquement :<br>
+<span class="highlight">première valeur</span> trouvée dans le registre médical.<br><br>
+
+Valeur associée : constante biologique du patient.
+
+</div>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
