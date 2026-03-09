@@ -64,27 +64,18 @@ import java.awt.event.*;
 import java.nio.file.*;
 import java.util.*;
 import java.util.List;
-
 public class DrawSegments {
-
     public static void main(String[] args) throws Exception {
-
         Dimension ecran = Toolkit.getDefaultToolkit().getScreenSize();
-
         new ProcessBuilder("mspaint").start();
         Thread.sleep(5000);
-
         Robot robot = new Robot();
-
         int decalageX = ecran.width/2 - 216;
-        int decalageY = ecran.height/2 - 180;
-
+        int decalageY = ecran.height/2 - 150;
         robot.mouseMove(decalageX, decalageY);
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-
         List<int[]> segments = chargerSegements("segments.txt");
-
         for (int[] s : segments) {
             robot.mouseMove(s[0] + decalageX, s[1] + decalageY);
             robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
@@ -93,23 +84,17 @@ public class DrawSegments {
             Thread.sleep(35);
         }
     }
-
     static List<int[]> chargerSegements(String fichier) throws Exception {
-
         List<int[]> liste = new ArrayList<>();
         List<String> lignes = Files.readAllLines(Paths.get(fichier));
-
-        for (String line : lignes) {
-            String[] p = line.split(",");
-
+        for (String ligne : lignes) {
+            String[] p = ligne.split(",");
             int x1 = Integer.parseInt(p[0]);
             int y1 = Integer.parseInt(p[1]);
             int x2 = Integer.parseInt(p[2]);
             int y2 = Integer.parseInt(p[3]);
-
             liste.add(new int[]{x1, y1, x2, y2});
         }
-
         return liste;
     }
 }
