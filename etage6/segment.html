@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Robot Dessinateur</title>
+
+<style>
+body{
+    margin:0;
+    background:#000;
+    font-family:Arial, sans-serif;
+}
+
+#cadre{
+    width:624px;
+    height:512px;
+    border:3px solid #b300ff;
+    box-shadow:0 0 12px #b300ff, 0 0 25px #b300ff;
+    padding:10px;
+    box-sizing:border-box;
+    color:white;
+}
+
+h1{
+    font-size:16px;
+    margin:0 0 10px 0;
+    color:#d86cff;
+    text-shadow:0 0 8px #b300ff;
+}
+
+.warning{
+    color:#ff4d4d;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+pre{
+    background:#111;
+    padding:10px;
+    overflow:auto;
+    height:380px;
+    border:1px solid #444;
+}
+
+code{
+    color:#8aff8a;
+}
+</style>
+</head>
+
+<body>
+
+<div id="cadre">
+
+<h1>RESPONSABLE IDENTIFIÉ PAR LE ROBOT DESSINATEUR</h1>
+
+<div class="warning">
+ATTENTION : UNE FOIS LE ROBOT LANCÉ NE TOUCHEZ SURTOUT PAS A LA SOURIS
+</div>
+
+<pre><code>
+import java.awt.*;
+import java.awt.event.*;
+import java.nio.file.*;
+import java.util.*;
+import java.util.List;
+
+public class DrawSegments {
+
+    public static void main(String[] args) throws Exception {
+
+        Dimension ecran = Toolkit.getDefaultToolkit().getScreenSize();
+
+        new ProcessBuilder("mspaint").start();
+        Thread.sleep(5000);
+
+        Robot robot = new Robot();
+
+        int decalageX = ecran.width/2 - 216;
+        int decalageY = ecran.height/2 - 180;
+
+        robot.mouseMove(decalageX, decalageY);
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+        List<int[]> segments = chargerSegements("segments.txt");
+
+        for (int[] s : segments) {
+            robot.mouseMove(s[0] + decalageX, s[1] + decalageY);
+            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+            robot.mouseMove(s[2] + decalageX, s[3] + decalageY);
+            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+            Thread.sleep(35);
+        }
+    }
+
+    static List<int[]> chargerSegements(String fichier) throws Exception {
+
+        List<int[]> liste = new ArrayList<>();
+        List<String> lignes = Files.readAllLines(Paths.get(fichier));
+
+        for (String line : lignes) {
+            String[] p = line.split(",");
+
+            int x1 = Integer.parseInt(p[0]);
+            int y1 = Integer.parseInt(p[1]);
+            int x2 = Integer.parseInt(p[2]);
+            int y2 = Integer.parseInt(p[3]);
+
+            liste.add(new int[]{x1, y1, x2, y2});
+        }
+
+        return liste;
+    }
+}
+</code></pre>
+
+</div>
+
+</body>
+</html>
