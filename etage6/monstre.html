@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>fichier_corrompu</title>
+
+<style>
+html,body{
+    margin:0;
+    padding:0;
+    background:#0a0a0a;
+    color:#ffffff;
+    font-family:monospace;
+}
+
+.container{
+    width:512px;
+    height:288px;
+    border:4px solid #ad0eff;
+    box-sizing:border-box;
+    padding:20px;
+    background:#000;
+    position:absolute;
+    top:0;
+    left:0;
+    overflow:hidden;
+    animation:borderglitch 0.4s infinite;
+}
+
+/* tête de mort filigrane */
+.skull{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:420px;
+    opacity:0.10;
+    pointer-events:none;
+    animation:skullPulse 3s ease-in-out infinite;
+}
+
+/* animation pulsation */
+@keyframes skullPulse{
+0%{
+    transform:translate(-50%,-50%) scale(1);
+    opacity:0.09;
+}
+50%{
+    transform:translate(-50%,-50%) scale(1.05);
+    opacity:0.13;
+}
+100%{
+    transform:translate(-50%,-50%) scale(1);
+    opacity:0.09;
+}
+}
+
+/* glitch cadre */
+@keyframes borderglitch{
+0%{border-color:#ad0eff;box-shadow:0 0 6px #ad0eff;}
+25%{border-color:#ff00ff;box-shadow:-2px 0 8px #ff00ff;}
+50%{border-color:#c000ff;box-shadow:2px 0 10px #c000ff;}
+75%{border-color:#ff2bff;box-shadow:0 0 12px #ff2bff;}
+100%{border-color:#ad0eff;box-shadow:0 0 6px #ad0eff;}
+}
+
+/* titre glitch RGB */
+.glitch{
+    position:relative;
+    font-size:30px;
+    font-weight:bold;
+    color:white;
+    animation:glitchMove 0.25s infinite;
+}
+
+.glitch::before,
+.glitch::after{
+    content:attr(data-text);
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.glitch::before{
+    color:#ff0000;
+    animation:glitchRed 0.35s infinite;
+}
+
+.glitch::after{
+    color:#00ffff;
+    animation:glitchBlue 0.4s infinite;
+}
+
+@keyframes glitchMove{
+0%{transform:translate(0)}
+20%{transform:translate(-1px,1px)}
+40%{transform:translate(2px,-1px)}
+60%{transform:translate(-2px,0)}
+80%{transform:translate(1px,2px)}
+100%{transform:translate(0)}
+}
+
+@keyframes glitchRed{
+0%{transform:translate(-2px,0)}
+25%{transform:translate(2px,-1px)}
+50%{transform:translate(-3px,1px)}
+75%{transform:translate(1px,-2px)}
+100%{transform:translate(-2px,0)}
+}
+
+@keyframes glitchBlue{
+0%{transform:translate(2px,0)}
+25%{transform:translate(-2px,1px)}
+50%{transform:translate(3px,-1px)}
+75%{transform:translate(-1px,2px)}
+100%{transform:translate(2px,0)}
+}
+
+.corrupt{
+    font-size:14px;
+}
+
+a{
+    color:#ff4dff;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+.content{
+    position:relative;
+    z-index:1;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="skull">💀</div>
+
+<div class="content">
+
+<div class="glitch" data-text="ERREUR // FICHIER CORROMPU">
+ERREUR // FICHIER CORROMPU
+</div>
+
+<br>
+
+<div class="corrupt">
+lecture impossible...<br>
+secteur 0x4A7 endommagé<br>
+mémoire fragmentée<br>
+données incohérentes<br>
+<br>
+tentative de récupération...<br>
+analyse partielle...<br>
+signature détectée : YmFzZTY0
+</div>
+
+<br>
+
+<a href="monstre_esquisse.txt">
+[ ouvrir fragment récupéré : monstre_esquisse.txt ]
+</a>
+
+</div>
+</div>
+
+</body>
+</html>
