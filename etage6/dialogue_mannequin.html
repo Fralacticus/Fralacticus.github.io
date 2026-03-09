@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Dialogue</title>
+
+<style>
+body{
+    margin:0;
+    background:#ffffff;
+    font-family:Arial, sans-serif;
+}
+
+/* zone principale */
+.scene{
+    position:absolute;
+    top:0;
+    left:0;
+    width:480px;
+    height:190px;
+    box-sizing:border-box;
+    padding:0px;
+    overflow:hidden;
+
+    /* éclairage vitrine froid */
+    background:
+        radial-gradient(circle at 50% -20%, rgba(255,255,255,0.95), rgba(220,220,220,1)),
+        linear-gradient(#f9f9f9,#e6e6e6);
+}
+
+/* silhouettes mannequins inquiétantes */
+.scene::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+
+    /* mannequin 1 */
+    radial-gradient(circle at 90px 60px,#111 16px,transparent 17px),
+    linear-gradient(#111,#111) 88px 76px / 8px 90px no-repeat,
+    linear-gradient(rgba(0,0,0,0.2),transparent) 88px 160px / 8px 120px no-repeat,
+
+    /* mannequin 2 */
+    radial-gradient(circle at 240px 75px,#111 16px,transparent 17px),
+    linear-gradient(#111,#111) 238px 91px / 8px 95px no-repeat,
+    linear-gradient(rgba(0,0,0,0.25),transparent) 238px 170px / 8px 130px no-repeat,
+
+    /* mannequin 3 */
+    radial-gradient(circle at 380px 65px,#111 16px,transparent 17px),
+    linear-gradient(#111,#111) 378px 81px / 8px 90px no-repeat,
+    linear-gradient(rgba(0,0,0,0.25),transparent) 378px 160px / 8px 120px no-repeat;
+
+    opacity:0.35;
+}
+
+/* halo inquiétant discret */
+.scene::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 50% 120%, rgba(180,0,0,0.15), transparent 60%);
+    pointer-events:none;
+}
+
+/* zone texte */
+.dialogue{
+    position:relative;
+    background:rgba(255,255,255,0.94);
+    border:2px solid #cfcfcf;
+    padding:16px;
+    font-size:15px;
+    line-height:1.45;
+    color:#111;
+
+    /* éclairage + léger malaise */
+    box-shadow:
+        0 0 25px rgba(0,0,0,0.18),
+        inset 0 0 10px rgba(255,255,255,0.9);
+}
+
+a{
+    color:#0033cc;
+    word-break:break-all;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+<div class="dialogue">
+On est les plus forts.<br><br>
+
+On est spécialistes des <b>BMP indexés 8 bits</b>.<br>
+
+Ça ne servira à rien du tout pour t'en sortir.<br>
+
+Mais tiens… regarde si tu sais lire :<br>
+
+<a href="https://gibberlings3.github.io/iesdp/file_formats/ie_formats/bmp.htm">
+https://gibberlings3.github.io/iesdp/file_formats/ie_formats/bmp.htm
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
